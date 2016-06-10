@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    >
+    <FrameLayout
+        android:id="@+id/back_camera_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:translationZ="0dp">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/front_camera_preview"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginBottom="43dp"
+
+        android:translationZ="1dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/front_camera_preview"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="50dp"
+        android:translationZ="2dp"
+        android:onClick="onClickStartRecord" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stop"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:translationZ="2dp"
+        android:onClick="onClickStopRecord" />
+
+</RelativeLayout>

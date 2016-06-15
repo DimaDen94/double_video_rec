@@ -159,9 +159,10 @@ public class MainActivity extends AppCompatActivity implements DisplayOrientatio
 
         backCamPreview.getLayoutParams().height = (int) (rectPreview.bottom);
         backCamPreview.getLayoutParams().width = (int) (rectPreview.right);
+        frontCamPreview.getLayoutParams().height = (int)(rectPreview.bottom/4);
+        frontCamPreview.getLayoutParams().width = (int)(rectPreview.right/4);
         setParametersToCamera(backCamera, 0);
         setParametersToCamera(frontCamera, 1);
-
     }
 
     int w;
@@ -194,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements DisplayOrientatio
             params.setPreviewSize(videoSizeBack.width, videoSizeBack.height);
 
         } else {
-            videoSizeFront = previewSizes.get(3);
+            videoSizeFront = previewSizes.get(1);
             params.setPreviewSize(videoSizeFront.width, videoSizeFront.height);
 
         }
@@ -300,7 +301,6 @@ public class MainActivity extends AppCompatActivity implements DisplayOrientatio
     }
 
     public void onClickStopRecord(View view) {
-
         if (mediaRecorderBack != null) {
             mediaRecorderBack.stop();
             releaseMediaRecorder(mediaRecorderBack, backCamera);
@@ -309,7 +309,8 @@ public class MainActivity extends AppCompatActivity implements DisplayOrientatio
             mediaRecorderFront.stop();
             releaseMediaRecorder(mediaRecorderFront, frontCamera);
         }
-
+        SDWorker.galleryAddPic(videoFileBack,this);
+        SDWorker.galleryAddPic(videoFileFront,this);
     }
 
     private boolean prepareVideoRecorder(MediaRecorder recorder, Camera camera, File file, int n) {
@@ -326,8 +327,6 @@ public class MainActivity extends AppCompatActivity implements DisplayOrientatio
             recorder.setVideoSize(videoSizeBack.width, videoSizeBack.height);
         else
             recorder.setVideoSize(videoSizeFront.width, videoSizeFront.height);
-
-        //recorder.setPreviewDisplay(preview.getHolder().getSurface());
         try {
             recorder.prepare();
         } catch (Exception e) {
